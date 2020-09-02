@@ -1,0 +1,86 @@
+{
+	"name": "tree-shortcut",
+	"version": "0.0.0",
+	"description": "Simplify an object tree with a shortcut. TypeScript supported. Zero dependencies.",
+	"license": "MIT",
+	"repository": "papb/tree-shortcut",
+	"author": {
+		"name": "Pedro Augusto de Paula Barbosa",
+		"email": "papb1996@gmail.com"
+	},
+	"engines": {
+		"node": ">=10"
+	},
+	"scripts": {
+		"build": "del-cli dist && tsc",
+		"prepack": "npm run build",
+		"release": "npm run build && np --no-2fa --no-cleanup",
+		"lint": "tsc --noEmit && xo",
+		"ava": "npm run build && ava",
+		"test": "npm run lint && npm run ava"
+	},
+	"main": "dist/source",
+	"types": "dist/source",
+	"files": [
+		"dist/source",
+		"!*.map",
+		"!*.test.*"
+	],
+	"keywords": [
+		"tree",
+		"shortcut",
+		"deep",
+		"nested",
+		"prop",
+		"property",
+		"object",
+		"array",
+		"typescript",
+		"skip",
+		"chop"
+	],
+	"devDependencies": {
+		"@ava/typescript": "^1.1.1",
+		"@types/lodash.clonedeep": "^4.5.6",
+		"@types/node": "^10",
+		"ava": "^3.12.1",
+		"del-cli": "^3.0.1",
+		"eslint-config-xo-typescript": "*",
+		"expect-type": "^0.7.9",
+		"lodash.clonedeep": "^4.5.0",
+		"np": "^6.5.0",
+		"pkg-dir": "^4.2.0",
+		"source-map-support": "*",
+		"typescript": "~4.0",
+		"xo": "*"
+	},
+	"ava": {
+		"verbose": true,
+		"require": [
+			"source-map-support/register"
+		],
+		"typescript": {
+			"rewritePaths": {
+				"source/": "dist/source/",
+				"test/": "dist/test/"
+			}
+		}
+	},
+	"xo": {
+		"ignore": [
+			"**/*.js"
+		],
+		"rules": {
+			"comma-dangle": ["error", "always-multiline"],
+			"curly": "off",
+			"linebreak-style": [
+				"error",
+				"unix"
+			],
+			"object-curly-spacing": [
+				"error",
+				"always"
+			]
+		}
+	}
+}
