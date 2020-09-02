@@ -1,6 +1,6 @@
 {
 	"name": "tree-shortcut",
-	"version": "0.0.0",
+	"version": "1.0.0",
 	"description": "Simplify an object tree with a shortcut. TypeScript supported. Zero dependencies.",
 	"license": "MIT",
 	"repository": "papb/tree-shortcut",
@@ -71,7 +71,10 @@
 			"**/*.js"
 		],
 		"rules": {
-			"comma-dangle": ["error", "always-multiline"],
+			"comma-dangle": [
+				"error",
+				"always-multiline"
+			],
 			"curly": "off",
 			"linebreak-style": [
 				"error",
