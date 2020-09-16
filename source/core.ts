@@ -35,8 +35,8 @@ function pick(tree: any, field: string): any {
 	return tree[field];
 }
 
-function treeShortcutHelperHelper(tree: any, from: string, to: string, name: string): any {
-	if (Array.isArray(tree)) return tree.map(x => treeShortcutHelperHelper(x, from, to, name));
+function treeShortcutHelper(tree: any, from: string, to: string, name: string): any {
+	if (Array.isArray(tree)) return tree.map(x => treeShortcutHelper(x, from, to, name));
 	if (!tree || typeof tree !== 'object') return tree;
 
 	const keys = Object.keys(tree);
@@ -44,7 +44,7 @@ function treeShortcutHelperHelper(tree: any, from: string, to: string, name: str
 
 	for (const key of keys) {
 		if (key !== from) {
-			result[key] = treeShortcutHelperHelper(tree[key], from, to, name);
+			result[key] = treeShortcutHelper(tree[key], from, to, name);
 		}
 	}
 
@@ -55,7 +55,7 @@ function treeShortcutHelperHelper(tree: any, from: string, to: string, name: str
 	return result;
 }
 
-export function treeShortcutHelper<
+export function treeShortcut<
 	Tree,
 	ShortcutTriggerProp extends string,
 	ShortcutTargetProp extends string,
@@ -66,5 +66,5 @@ export function treeShortcutHelper<
 	shortcutTargetProp: ShortcutTargetProp,
 	shortcutName: ShortcutName,
 ): TreeShortcut<Tree, ShortcutTriggerProp, ShortcutTargetProp, ShortcutName> {
-	return treeShortcutHelperHelper(tree, shortcutTriggerProp, shortcutTargetProp, shortcutName);
+	return treeShortcutHelper(tree, shortcutTriggerProp, shortcutTargetProp, shortcutName);
 }

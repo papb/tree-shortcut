@@ -1,3 +1,3 @@
-import { treeShortcutHelper } from './core';
+import { treeShortcut } from './core';
 
-export = treeShortcutHelper;
+export = treeShortcut;
