@@ -1,5 +1,7 @@
 import isPlainObject_ = require('is-plain-obj');
 
-export function isPlainObject(value: any): value is Record<string | number | symbol, unknown> {
+export type AnyPlainObject = Record<string | number | symbol, unknown>;
+
+export function isPlainObject(value: any): value is AnyPlainObject {
 	return isPlainObject_(value);
 }

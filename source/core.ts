@@ -1,6 +1,5 @@
-import { isPlainObject } from './is-plain-object';
+import { isPlainObject, AnyPlainObject } from './is-plain-object';
 
-type AnyObject = Record<string, unknown>;
 type AnyArray = readonly any[];
 type PropOrNever<O, Prop> = Prop extends string | number ? (O extends Record<Prop, any> ? O[Prop] : never) : never;
 type PropOrUndef<O, Prop extends string> = O extends Record<Prop, any> ? O[Prop] : undefined;
@@ -23,8 +22,8 @@ export type TreeShortcut<
 					? PropOrUndefEnteringArrayIfNeeded<T[PropName], InnerPropName>
 					: TreeShortcut<PropOrNever<T, K>, PropName, InnerPropName, ShortcutName>;
 			}
-			: T extends AnyArray | AnyObject
-				// Due to the distribution above, here T will not be `AnyArray | AnyObject`,
+			: T extends AnyArray | AnyPlainObject
+				// Due to the distribution above, here T will not be `AnyArray | AnyPlainObject`,
 				// since if it were, it would have distributed. This is important since
 				// `keyof ([1] | { a: 1 })` is `never`, while we want a distribution over `0` and `'a'`
 				? { [K in keyof T]: TreeShortcut<T[K], PropName, InnerPropName, ShortcutName> }
@@ -58,7 +57,7 @@ function treeShortcutHelper(tree: any, from: string, to: string, name: string): 
 }
 
 export function treeShortcut<
-	Tree,
+	Tree extends AnyArray | AnyPlainObject,
 	ShortcutTriggerProp extends string,
 	ShortcutTargetProp extends string,
 	ShortcutName extends string,
