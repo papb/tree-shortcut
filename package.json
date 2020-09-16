@@ -1,6 +1,6 @@
 {
 	"name": "tree-shortcut",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"description": "Simplify an object tree with a shortcut. TypeScript supported.",
 	"license": "MIT",
 	"repository": "papb/tree-shortcut",
