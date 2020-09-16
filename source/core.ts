@@ -1,3 +1,5 @@
+import { isPlainObject } from './is-plain-object';
+
 type AnyObject = Record<string, unknown>;
 type AnyArray = readonly any[];
 type PropOrNever<O, Prop> = Prop extends string | number ? (O extends Record<Prop, any> ? O[Prop] : never) : never;
@@ -31,13 +33,13 @@ export type TreeShortcut<
 
 function pick(tree: any, field: string): any {
 	if (Array.isArray(tree)) return tree.map(x => pick(x, field));
-	if (!tree || typeof tree !== 'object') return tree;
+	if (!isPlainObject(tree)) return tree;
 	return tree[field];
 }
 
 function treeShortcutHelper(tree: any, from: string, to: string, name: string): any {
 	if (Array.isArray(tree)) return tree.map(x => treeShortcutHelper(x, from, to, name));
-	if (!tree || typeof tree !== 'object') return tree;
+	if (!isPlainObject(tree)) return tree;
 
 	const keys = Object.keys(tree);
 	const result: any = {};

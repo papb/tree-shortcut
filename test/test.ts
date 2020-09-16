@@ -1,6 +1,7 @@
 import test from 'ava';
 import { expectTypeOf } from 'expect-type';
 import cloneDeep = require('lodash.clonedeep');
+import { isPlainObject } from '../source/is-plain-object';
 import treeShortcut = require('../source');
 import { TreeShortcut } from '../source/core';
 
@@ -161,4 +162,24 @@ test('Does not modify input', t => {
 	// Real test
 	t.deepEqual(tree1, tree1memo);
 	t.deepEqual(tree2, tree2memo);
+});
+
+test('Does not mess with non-plain objects', t => {
+	expectTypeOf<TreeShortcut<{ foo: { bar: Date }; qux: Date }, 'foo', 'bar', 'baz'>>()
+		.toEqualTypeOf<{ baz: Date; qux: Date }>();
+
+	const date = new Date();
+
+	// `is-plain-object` sanity check
+	t.true(isPlainObject({}));
+	t.false(isPlainObject(null));
+	t.false(isPlainObject(date));
+
+	const tree = [{ a: date, b: null, c: undefined, d: 4, e: { f: date } }];
+	const expected = [{ a: date, b: null, c: undefined, d: 4, x: date }];
+
+	t.deepEqual(
+		treeShortcut(tree, 'e', 'f', 'x'),
+		expected,
+	);
 });

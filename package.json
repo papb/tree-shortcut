@@ -1,7 +1,7 @@
 {
 	"name": "tree-shortcut",
 	"version": "1.0.0",
-	"description": "Simplify an object tree with a shortcut. TypeScript supported. Zero dependencies.",
+	"description": "Simplify an object tree with a shortcut. TypeScript supported.",
 	"license": "MIT",
 	"repository": "papb/tree-shortcut",
 	"author": {
@@ -39,6 +39,9 @@
 		"skip",
 		"chop"
 	],
+	"dependencies": {
+		"is-plain-obj": "^2.1.0"
+	},
 	"devDependencies": {
 		"@ava/typescript": "^1.1.1",
 		"@types/lodash.clonedeep": "^4.5.6",

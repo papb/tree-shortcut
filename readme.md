@@ -1,6 +1,6 @@
-# tree-shortcut ![Build Status](https://github.com/papb/tree-shortcut/workflows/CI/badge.svg)
+# tree-shortcut ![Build Status](https://github.com/papb/tree-shortcut/workflows/CI/badge.svg) [![install size](https://packagephobia.com/badge?p=tree-shortcut)](https://packagephobia.com/result?p=tree-shortcut)
 
-> Simplify an object tree with a shortcut. TypeScript supported. Zero dependencies.
+> Simplify an object tree with a shortcut. TypeScript supported.
 
 
 ## Install
