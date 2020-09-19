@@ -57,7 +57,7 @@ function treeShortcutHelper(tree: any, from: string, to: string, name: string): 
 }
 
 export function treeShortcut<
-	Tree extends AnyArray | AnyPlainObject,
+	Tree,
 	ShortcutTriggerProp extends string,
 	ShortcutTargetProp extends string,
 	ShortcutName extends string,

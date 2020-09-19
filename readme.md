@@ -69,9 +69,9 @@ console.log(newTree);
 
 #### tree
 
-Type: Array or plain object
+Type: Anything
 
-The tree to be copied and modified.
+If it is indeed a tree (i.e. an array or plain object), it will be copied and modified with the shortcut. Otherwise, it will be returned unchanged.
 
 #### shortcutTriggerProp
 
@@ -96,9 +96,10 @@ The name of the new prop to replace the `shortcutTriggerProp` in the parent obje
 
 The `treeShortcut(tree, shortcutTriggerProp, shortcutTargetProp, shortcutName)` will do the following:
 
+* If it is not an array nor a plain object, just return the input. Otherwise:
 * Shallow-clone the `tree` object/array
 * For each (shallow) property in the `tree`:
-    * If its value is not an object (nor an array), do nothing;
+    * If its value is not a plain object (nor an array), do nothing;
     * Otherwise:
         * If its name is `shortcutTriggerProp`:
             * Change the property name to `shortcutName`

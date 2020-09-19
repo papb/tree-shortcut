@@ -183,3 +183,26 @@ test('Does not mess with non-plain objects', t => {
 		expected,
 	);
 });
+
+test('Leaves non-trees untouched', t => {
+	expectTypeOf<TreeShortcut<Date, 'foo', 'bar', 'baz'>>()
+		.toEqualTypeOf<Date>();
+
+	expectTypeOf<TreeShortcut<number, 'foo', 'bar', 'baz'>>()
+		.toEqualTypeOf<number>();
+
+	expectTypeOf<TreeShortcut<null, 'foo', 'bar', 'baz'>>()
+		.toEqualTypeOf<null>();
+
+	expectTypeOf<TreeShortcut<undefined, 'foo', 'bar', 'baz'>>()
+		.toEqualTypeOf<undefined>();
+
+	const date = new Date();
+	t.is(treeShortcut(date, 'a', 'b', 'c'), date);
+
+	t.is(treeShortcut(true, 'a', 'b', 'c'), true);
+	t.is(treeShortcut(null, 'a', 'b', 'c'), null);
+	t.is(treeShortcut(undefined, 'a', 'b', 'c'), undefined);
+	t.is(treeShortcut(0, 'a', 'b', 'c'), 0);
+	t.is(treeShortcut('hello', 'a', 'b', 'c'), 'hello');
+});
