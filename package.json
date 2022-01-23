@@ -9,7 +9,7 @@
 		"email": "papb1996@gmail.com"
 	},
 	"engines": {
-		"node": ">=10"
+		"node": ">=12.22"
 	},
 	"scripts": {
 		"build": "del-cli dist && tsc",
@@ -45,7 +45,7 @@
 	"devDependencies": {
 		"@ava/typescript": "^1.1.1",
 		"@types/lodash.clonedeep": "^4.5.6",
-		"@types/node": "^10",
+		"@types/node": "^12.22",
 		"ava": "^3.12.1",
 		"del-cli": "^3.0.1",
 		"eslint-config-xo-typescript": "*",
