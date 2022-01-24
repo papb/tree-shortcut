@@ -1,25 +1,31 @@
 {
-	"include": [
-		"source",
-		"test"
-	],
+	"include": ["source", "test"],
 	"compilerOptions": {
 		"outDir": "dist",
-		"target": "es2018",
+
+		"target": "es2019", // Node.js 12
 		"module": "commonjs",
 		"moduleResolution": "node",
-		"resolveJsonModule": true,
-		"strict": true,
+		/// "preserveValueImports": true,
+
 		"declaration": true,
-		"sourceMap": true,
-		"pretty": true,
 		"newLine": "lf",
-		"stripInternal": true,
-		"noImplicitReturns": true,
-		"noUnusedLocals": false,
-		"noUnusedParameters": false,
-		"noFallthroughCasesInSwitch": true,
 		"noEmitOnError": true,
-		"skipLibCheck": true
+		"pretty": true,
+		"resolveJsonModule": true,
+		"skipLibCheck": true,
+		"sourceMap": true,
+		"stripInternal": true,
+
+		"strict": true,
+		"exactOptionalPropertyTypes": true,
+		"noFallthroughCasesInSwitch": true,
+		"noImplicitOverride": true,
+		"noImplicitReturns": true,
+		"noPropertyAccessFromIndexSignature": true,
+		"noUncheckedIndexedAccess": true,
+		"noUnusedLocals": false, // Let the linter handle this
+		"noUnusedParameters": false, // Let the linter handle this
+		"useUnknownInCatchVariables": true
 	}
 }
