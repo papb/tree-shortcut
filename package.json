@@ -15,9 +15,9 @@
 		"build": "del-cli dist && tsc",
 		"prepack": "npm run build",
 		"release": "npm run build && np --no-yarn --no-2fa --no-cleanup",
-		"lint": "tsc --noEmit && xo",
-		"ava": "npm run build && ava",
-		"test": "npm run lint && npm run ava"
+		"lint": "tsc --noEmit && eslint . --max-warnings 0 && prettier --check .",
+		"prettier": "prettier --write .",
+		"test": "npm run lint && npm run build && ava"
 	},
 	"main": "dist/source",
 	"types": "dist/source",
@@ -40,53 +40,23 @@
 		"chop"
 	],
 	"dependencies": {
-		"is-plain-obj": "^2.1.0"
+		"is-plain-obj": "^3.0.0"
 	},
 	"devDependencies": {
 		"@ava/typescript": "^1.1.1",
+		"@papb/linter": "^0.1.0",
 		"@types/lodash.clonedeep": "^4.5.6",
-		"@types/node": "^12.22",
-		"ava": "^3.12.1",
+		"@types/node": "^12.20",
+		"ava": "^3.15.0",
 		"del-cli": "^3.0.1",
-		"eslint-config-xo-typescript": "*",
-		"expect-type": "^0.7.9",
+		"eslint": "^8.7.0",
+		"expect-type": "^0.13.0",
+		"json5": "^2.2.0",
 		"lodash.clonedeep": "^4.5.0",
-		"np": "^6.5.0",
+		"np": "^7.6.0",
 		"pkg-dir": "^4.2.0",
-		"source-map-support": "*",
-		"typescript": "~4.0",
-		"xo": "*"
-	},
-	"ava": {
-		"verbose": true,
-		"require": [
-			"source-map-support/register"
-		],
-		"typescript": {
-			"rewritePaths": {
-				"source/": "dist/source/",
-				"test/": "dist/test/"
-			}
-		}
-	},
-	"xo": {
-		"ignore": [
-			"**/*.js"
-		],
-		"rules": {
-			"comma-dangle": [
-				"error",
-				"always-multiline"
-			],
-			"curly": "off",
-			"linebreak-style": [
-				"error",
-				"unix"
-			],
-			"object-curly-spacing": [
-				"error",
-				"always"
-			]
-		}
+		"prettier": "^2.5.1",
+		"source-map-support": "^0.5.21",
+		"typescript": "~4.5.5"
 	}
 }
