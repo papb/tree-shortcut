@@ -37,7 +37,12 @@
 		"array",
 		"typescript",
 		"skip",
-		"chop"
+		"chop",
+		"record",
+		"simplify",
+		"replace",
+		"convert",
+		"structure"
 	],
 	"dependencies": {
 		"is-plain-obj": "^3.0.0"
