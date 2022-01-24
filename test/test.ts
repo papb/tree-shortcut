@@ -49,8 +49,12 @@ test('Basic usage', t => {
 		],
 	};
 
+	/// type ExpectedResultType = { items: Array<{ foobar: number[] | undefined }> };
+	// TS <4.5 does not realize the above type is the same as the one below, so we don't use it. But it's the same.
+	type ExpectedResultType = { items: Array<{ foobar: number[] } | { foobar: undefined }> };
+
 	expectTypeOf(result).toEqualTypeOf(expectedResult);
-	expectTypeOf(result).toEqualTypeOf<{ items: Array<{ foobar: number[] | undefined }> }>();
+	expectTypeOf(result).toEqualTypeOf<ExpectedResultType>();
 
 	t.deepEqual(result, expectedResult);
 
