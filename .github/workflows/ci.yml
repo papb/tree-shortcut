@@ -2,41 +2,43 @@ name: CI
 on: [push, pull_request]
 
 jobs:
-  lint:
-    runs-on: ubuntu-latest
-    steps:
-      -
-        uses: actions/checkout@v2
-      -
-        uses: actions/setup-node@v1
-        with:
-          node-version: 14.x
-      -
-        run: npm install
-      -
-        run: npm run lint
   test:
     strategy:
+      fail-fast: false
       matrix:
-        os: [ubuntu-latest, windows-latest]
-        node-version: [14.x, 12.x, 10.x]
-        exclude:
+        os: [ubuntu-latest]
+        node-version:
+          - 12
+          - 14
+          - 16
+        include:
           -
-            node-version: 14.x
-            os: ubuntu-latest
-          -
-            node-version: 10.x
             os: windows-latest
+            node-version: 14
+    name: Main Test - Node.js ${{ matrix.node-version }} ${{ matrix.os == 'windows-latest' && '(Windows)' || '' }}
     runs-on: ${{ matrix.os }}
     steps:
-      -
-        uses: actions/checkout@v2
-      -
-        name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      -
-        run: npm install
-      -
-        run: npm run ava
+      - run: npm install
+      - run: npm test
+  ts-compat:
+    strategy:
+      fail-fast: false
+      matrix:
+        ts-version: ['4.5', '4.4', '4.3', '4.2', '4.1', '4.0', '3.9', '3.8', '3.7']
+    name: Compatibility with TS ${{ matrix.ts-version }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 14
+      - run: npm install
+      - run: npm run build
+      - run: rm -rf source && mv dist/source source
+      - run: npm install --save-dev typescript@~${{ matrix.ts-version }}
+      - run: mv tsconfig.json original-tsconfig.json && node .github/workflows/fix-tsconfig-for-compat-check.cjs > tsconfig.json
+      - run: npx tsc --noEmit
