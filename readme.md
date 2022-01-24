@@ -129,6 +129,8 @@ The `treeShortcut(tree, shortcutTriggerProp, shortcutTargetProp, shortcutName)` 
 
 This module supports TypeScript by default. The return type of the `treeShortcut` method is properly constructed.
 
+The tested versions are TS 4.1, 4.2, 4.3, 4.4 and 4.5.
+
 Note: the new shortcut property will be set to `readonly` if (and only if) the inner property was `readonly`. If the inner property was deep into an array, the new shortcut property will be set to `readonly` if (and only if) the inner property was `readonly` on all leaves of that array.
 
 Example:

@@ -27,7 +27,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        ts-version: ['4.5', '4.4', '4.3', '4.2', '4.1', '4.0', '3.9', '3.8', '3.7']
+        ts-version: ['4.5', '4.4', '4.3', '4.2', '4.1']
     name: Compatibility with TS ${{ matrix.ts-version }}
     runs-on: ubuntu-latest
     steps:
