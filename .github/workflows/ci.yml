@@ -12,8 +12,7 @@ jobs:
           - 14
           - 16
         include:
-          -
-            os: windows-latest
+          - os: windows-latest
             node-version: 14
     name: Main Test - Node.js ${{ matrix.node-version }} ${{ matrix.os == 'windows-latest' && '(Windows)' || '' }}
     runs-on: ${{ matrix.os }}
