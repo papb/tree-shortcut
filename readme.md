@@ -10,7 +10,9 @@ $ npm install tree-shortcut
 
 ## Purpose
 
-This module allows you to simplify a tree structure (i.e., any recursive object/array structure) by replacing objects with the value of one of its keys. For example, you may want to convert `[{ a: 1, b: 2 }, { a: 3, d: 4 }]` into `[1, 3]` (replacing each object by its value on `'a'`).
+This module allows you to simplify a tree structure (i.e., any recursive object/array structure) by replacing objects with the value of one of its keys.
+
+For example, you may want to convert `[{ a: 1, b: 2 }, { a: 3, d: 4 }]` into `[1, 3]` (replacing each object by its value on `'a'`).
 
 This module provides a `treeShortcut` function that takes a tree and a simple _shortcut description_ and returns a deeply-cloned tree with a little change: the nested access of your choice is replaced by a shortcut. This allows you to simplify a complex tree of data, skipping information that you do not need.
 
